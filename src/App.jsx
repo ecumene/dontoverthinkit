@@ -2,7 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 
 import point from "./assets/point.gif";
 import computaSmash from "./assets/computaSmash.gif";
-import pizzaCut from "./assets/pizzaCut.gif";
+import question from "./assets/question.gif";
+import canada from "./assets/canada.gif";
+import love from "./assets/love.gif";
+import underConstruction from "./assets/underConstruction.gif";
 import dontOverThinkIt from "./assets/dontOverThinkItTxt.png";
 import trophy from "./assets/trophy.gif";
 import lanPary from "./assets/lanparty.jpg";
@@ -10,14 +13,16 @@ import hackathonTxt from "./assets/hackathonTxt.png";
 import hug from "./assets/hug.gif";
 import computer from "./assets/computer.png";
 import pizza from "./assets/pizza.gif";
+import pizzaCut from "./assets/pizzaCut.gif";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { DiscordLogo } from "@phosphor-icons/react/dist/ssr";
-import { Bird, Info, Mailbox, Money, ThumbsUp } from "@phosphor-icons/react";
+import { Bird, Heart, Info, Mailbox, Money, ThumbsUp } from "@phosphor-icons/react";
 
 function App() {
   const [showEmoji, setShowEmoji] = useState(true);
   const faqRef = useRef(null);
+  const sponsorRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -31,9 +36,13 @@ function App() {
     faqRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToSponsor = () => {
+    sponsorRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="flex flex-col items-center overflow-hidden font-merriweather text-white">
-      <div className="relative mx-10 my-28 flex max-w-[500px] items-center">
+      <div className="relative mx-10 my-20 flex max-w-[500px] items-center">
         <div className="absolute left-[28%] top-[10%] z-[-1] w-[39%] bg-black">
           <motion.img
             animate={{ opacity: [1, 0.5, 0.2, 0.8, 0.8, 0.4, 0, 0, 0, 0, 0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1] }}
@@ -58,9 +67,9 @@ function App() {
         />
         <img src={computer} />
       </div>
-      <div className="mx-2 my-8 text-center italic">
+      <div className="mx-2 my-8 text-center text-sm italic">
         Build a <b className="font-bold">solution</b> to your <b className="font-bold">problem</b> over a weekend of pizza fueled hacking.
-        <div className="mt-4 flex w-full justify-center gap-8 font-sedan text-xl">
+        <div className="mt-4 flex w-full justify-center gap-8 font-sedan text-lg">
           <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex items-center gap-2">
             <Money weight="bold" /> free of charge
           </motion.span>
@@ -72,18 +81,22 @@ function App() {
           </motion.span>
         </div>
       </div>
-      <div className="flex gap-2">
-        <a href="#" onClick={scrollToFAQ} className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-green-600 px-2 text-lg text-white">
+      <div className="flex flex-wrap justify-center gap-2">
+        <a href="#" onClick={scrollToFAQ} className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-green-600 px-2 text-white">
           <Info weight="bold" />
           Information
         </a>
-        <a href="mailto:mitch@spellbook.legal" className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-red-500 px-2 text-lg text-white">
+        <a href="mailto:mitch@spellbook.legal" className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-orange-500 px-2 text-white">
           <Mailbox weight="bold" />
           Contact
         </a>
-        <a href="https://discord.gg/r8mSmykurU" className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-blue-800 px-2 text-lg text-white">
+        <a href="https://discord.gg/r8mSmykurU" className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-blue-800 px-2  text-white">
           <DiscordLogo weight="bold" />
           Discord
+        </a>
+        <a href="#" onClick={scrollToSponsor} className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-red-500 px-2 text-white">
+          <Heart weight="bold" />
+          Become a sponsor
         </a>
       </div>
       <hr className="my-12 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
@@ -137,7 +150,8 @@ function App() {
         </div>
       </div>
       <hr className="my-12 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
-      <div ref={faqRef}>
+      <div ref={sponsorRef} className="relative">
+        <img src={question} className="w-12 absolute left-[-25%] bottom-0" />
         <div className="mb-2 font-mono text-xl">:-)</div>
         <div className="font-sedan text-4xl font-bold">F.A.Q. Wall</div>
       </div>
@@ -158,7 +172,7 @@ function App() {
         <div className="my-8 bg-[#050268] px-4 py-1 text-xl tracking-widest">&gt; How will prizes be judged?</div>
         <div className="relative">
           Prizes will be awarded based on the following categories:
-          <img src={trophy} className="absolute left-72 w-12" />
+          <img src={trophy} className="absolute left-72 top-16 w-12" />
           <ul className="my-4 ml-8 list-disc space-y-2 pl-5">
             <li>Best Overall</li>
             <li>Best Design</li>
@@ -202,7 +216,49 @@ function App() {
           </a>
         </div>
       </div>
-      <img src={pizzaCut} className="my-8 w-32" />
+      <hr className="my-12 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
+      <div ref={sponsorRef} className="relative">
+        <img src={love} className="w-12 absolute left-[-25%] bottom-0" />
+        <div className="mb-2 font-mono text-xl">&lt;3</div>
+        <div className="font-sedan text-4xl font-bold">Sponsor DO. IT</div>
+      </div>
+      <div className="mx-auto my-4 flex max-w-2xl flex-col px-8">
+        <div className="my-8 bg-[#050268] px-4 py-1 text-xl tracking-widest">&gt; Why should you DO. IT?</div>
+        <div>
+          Joining DO. IT as a sponsor means more than just logo placement. It's about becoming part of a movement that values action over words. Your support empowers a diverse
+          group of problem-solvers, ready to dive into the tech scene with fresh ideas.
+        </div>
+        <div>
+          <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">Your Benefits Include</div>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              <b>Enriching the Talent Pipeline:</b> Connect with passionate individuals across various disciplines, ready to bring new perspectives to your team.
+            </li>
+            <li>
+              <b>Engage the Community:</b> Show your commitment to fostering innovation and support the growth of Newfoundland and Labrador&apos;s tech ecosystem.
+            </li>
+            <li>
+              <b>Much, much more:</b> Download our Sponsor package to learn more about the benefits of sponsoring DO. IT and how you can get involved.
+            </li>
+          </ul>
+        </div>
+        <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">Download here:</div>
+        <div className="flex w-full flex-col items-center">
+          <a
+            href="/dontoverthinkit/jointherebellion.pdf"
+            className="my-8 flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-red-700 px-2 text-lg text-white"
+          >
+            <Heart weight="bold" />
+            Download our Sponsor package
+          </a>
+        </div>
+        <hr className="my-12 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
+        <img src={pizzaCut} className="w-1/2 mx-auto" />
+        <div className="flex gap-2 mt-32">
+          <img src={underConstruction} className="h-12" />
+          <img src={canada} className="h-12" />
+        </div>
+      </div>
     </div>
   );
 }
