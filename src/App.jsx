@@ -81,10 +81,7 @@ function App() {
           <Mailbox weight="bold" />
           Contact
         </a>
-        <a
-          href="https://share.hsforms.com/1Xt665hUURr6e9EFAq1H0hAqf935"
-          className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-blue-800 px-2 text-lg text-white"
-        >
+        <a href="https://discord.gg/r8mSmykurU" className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-blue-800 px-2 text-lg text-white">
           <DiscordLogo weight="bold" />
           Discord
         </a>
@@ -199,10 +196,7 @@ function App() {
         </div>
         <div className="flex w-full flex-col items-center">
           <img src={hug} className="mt-8 w-32" />
-          <a
-            href="https://share.hsforms.com/1Xt665hUURr6e9EFAq1H0hAqf935"
-            className="my-8 flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-blue-800 px-2 text-lg text-white"
-          >
+          <a href="https://discord.gg/r8mSmykurU" className="my-8 flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-blue-800 px-2 text-lg text-white">
             <DiscordLogo weight="bold" />
             Join us on Discord
           </a>
