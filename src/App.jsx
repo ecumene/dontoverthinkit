@@ -68,6 +68,10 @@ function App() {
         <img src={computer} />
       </div>
       <div className="mx-2 my-8 text-center text-sm italic">
+        <div className="text-xs">
+          May 17th, 2024 - <b>Core Science Facility</b> @ Memorial University, St. John&apos;s, NL
+        </div>
+        <div>--</div>
         Build a <b className="font-bold">solution</b> to your <b className="font-bold">problem</b> over a weekend of pizza fueled hacking.
         <div className="mt-4 flex w-full justify-center gap-8 font-sedan text-lg">
           <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex items-center gap-2">
