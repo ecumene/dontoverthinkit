@@ -249,7 +249,7 @@ function App() {
         <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">Download here:</div>
         <div className="flex w-full flex-col items-center">
           <a
-            href="/dontoverthinkit/jointherebellion.pdf"
+            href="/dontoverthinkit/JoinTheRebellion.pdf"
             className="my-8 flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-red-700 px-2 text-lg text-white"
           >
             <Heart weight="bold" />
