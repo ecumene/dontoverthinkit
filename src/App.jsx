@@ -13,6 +13,7 @@ import hackathonTxt from "./assets/hackathonTxt.png";
 import hug from "./assets/hug.gif";
 import computer from "./assets/computer.png";
 import pizza from "./assets/pizza.gif";
+import spellbook from "./assets/spellbook.png";
 import pizzaCut from "./assets/pizzaCut.gif";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -66,6 +67,10 @@ function App() {
           className="absolute bottom-[-20%] w-full"
         />
         <img src={computer} />
+      </div>
+      <div className="flex items-center gap-4">
+        Visionary Sponsors:
+        <img className="w-48" src={spellbook} />
       </div>
       <div className="mx-2 my-8 text-center text-sm italic">
         <div className="text-xs">
