@@ -21,7 +21,7 @@ import pizzaCut from "./assets/pizzaCut.gif";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { DiscordLogo } from "@phosphor-icons/react/dist/ssr";
-import { Bird, Heart, Info, Mailbox, Money, ThumbsUp } from "@phosphor-icons/react";
+import { Bird, Heart, Info, Mailbox, Money, ThumbsUp, Trophy } from "@phosphor-icons/react";
 
 function App() {
   const [showEmoji, setShowEmoji] = useState(true);
@@ -189,6 +189,13 @@ function App() {
           the bare minimum to get the job done. So don&apos;t overthink it - just DO. IT!
         </div>
         <div className="my-8 bg-[#050268] px-4 py-1 text-xl tracking-widest">&gt; How will prizes be judged?</div>
+        <a
+          href="/dontoverthinkit/JudgingCriteria.pdf"
+          className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-amber-600 mx-auto mb-4 px-2  text-white"
+        >
+          <Trophy weight="bold" />
+          See our juding criteria
+        </a>
         <div className="relative">
           Prizes will be awarded based on the following categories:
           <img src={trophy} className="absolute left-72 top-16 w-12" />
