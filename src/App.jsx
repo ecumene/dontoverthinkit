@@ -14,6 +14,9 @@ import hug from "./assets/hug.gif";
 import computer from "./assets/computer.png";
 import pizza from "./assets/pizza.gif";
 import spellbook from "./assets/spellbook.png";
+import trophi from "./assets/trophi.png";
+import colab from "./assets/colab.png";
+import keyin from "./assets/keyin.png";
 import pizzaCut from "./assets/pizzaCut.gif";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -68,9 +71,11 @@ function App() {
         />
         <img src={computer} />
       </div>
-      <div className="flex items-center gap-4">
-        Visionary Sponsors:
-        <img className="w-48" src={spellbook} />
+      <div className="flex items-center justify-center gap-4">
+        <img className="h-10" src={spellbook} />
+        <img className="h-6" src={trophi} />
+        <img className="h-6" src={keyin} />
+        <img className="h-6" src={colab} />
       </div>
       <div className="mx-2 my-8 text-center text-sm italic">
         <div className="text-xs">
@@ -139,23 +144,28 @@ function App() {
           </div>
         </div>
         <div className="relative border-2 border-black border-b-white border-r-white bg-[#ffffcc] p-4 text-[#223a58]">
-          <div className="text-lg font-bold">May 17th, 2024</div>
-          <div className="mb-2">Core Science Facility @ Memorial University</div>
+          <div className="text-lg font-bold">Opening Ceremony - May 17th, 2024</div>
+          <div className="mb-2">The Breezeway @ Memorial University</div>
           <table className="text-center text-lg">
             <tr>
               <td className="pr-4 text-left font-bold">Friday</td>
               <td className="text-right">6:00pm - 11pm</td>
             </tr>
+          </table>
+          <hr className="my-4 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
+          <div className="text-lg font-bold">Hacking begins - May 18th, 2024</div>
+          <div className="mb-2">Core Science Facility @ Memorial University</div>
+          <table className="text-center text-lg">
             <tr>
               <td className="pr-4 text-left font-bold">Saturday</td>
-              <td className="text-right">9:00am - 11pm</td>
+              <td className="text-right">9:00am - 5pm</td>
             </tr>
             <tr>
               <td className="pr-4 text-left font-bold">Sundary</td>
               <td className="text-right">9:00am - 11pm</td>
             </tr>
           </table>
-          <img src={pizza} className="absolute bottom-[-5%] right-[-30%] scale-x-[-100%]" />
+          <img src={pizza} className="absolute bottom-[-10%] right-[-40%] scale-x-[-100%]" />
         </div>
       </div>
       <hr className="my-12 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
