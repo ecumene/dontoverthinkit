@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
-    background-color: #3c679b;
-    cursor: url('/cursor.png'), auto;
+    background-color: #f0f0f9;
 }

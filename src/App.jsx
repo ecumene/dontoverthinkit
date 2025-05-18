@@ -1,292 +1,313 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
+import { motion } from "framer-motion";
+import { Bird, DiscordLogo, Heart, Info, Mailbox, Money, ThumbsUp, Trophy } from "@phosphor-icons/react";
 
-import point from "./assets/point.gif";
-import computaSmash from "./assets/computaSmash.gif";
-import question from "./assets/question.gif";
-import canada from "./assets/canada.gif";
-import love from "./assets/love.gif";
-import underConstruction from "./assets/underConstruction.gif";
+// Assets – logos & static imagery only (no GIFs)
 import dontOverThinkIt from "./assets/dontOverThinkItTxt.png";
-import trophy from "./assets/trophy.gif";
-import lanPary from "./assets/lanparty.jpg";
-import hackathonTxt from "./assets/hackathonTxt.png";
-import hug from "./assets/hug.gif";
-import computer from "./assets/computer.png";
-import pizza from "./assets/pizza.gif";
-import spellbook from "./assets/spellbook.png";
+import spellbook from "./assets/spellbook.svg";
 import trophi from "./assets/trophi.png";
+import technl from "./assets/technl.png";
 import colab from "./assets/colab.png";
-import keyin from "./assets/keyin.png";
-import pizzaCut from "./assets/pizzaCut.gif";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { DiscordLogo } from "@phosphor-icons/react/dist/ssr";
-import { Bird, Heart, Info, Mailbox, Money, ThumbsUp, Trophy } from "@phosphor-icons/react";
+// Collage photos – static PNGs pulled from sponsorship package
+import collage1 from "./assets/collage/collage1.png";
+import collage2 from "./assets/collage/collage2.png";
+import collage3 from "./assets/collage/collage3.png";
+import collage4 from "./assets/collage/collage4.png";
+import collage5 from "./assets/collage/collage5.png";
 
-function App() {
-  const [showEmoji, setShowEmoji] = useState(true);
+// Tailwind helper – button base
+const navBtnBase = "flex items-center gap-1 border-2 border-black px-3 py-1 transition-colors duration-200";
+
+/** ------------------------------------------------------------------
+ *  Collage — simple responsive flexbox (column → row)
+ *  ------------------------------------------------------------------*/
+function Collage() {
+  const photos = [collage1, collage2, collage3, collage4, collage5];
+
+  return (
+    <div className="flex overflow-x-auto pb-4 justify-between">
+      {photos.map((src, idx) => (
+        <motion.img
+          key={idx}
+          src={src}
+          alt={`Hackathon collage ${idx + 1}`}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: idx * 0.1 }}
+          className="h-72 w-[220px] flex-shrink-0 border-4 border-black bg-white object-cover shadow-lg filter grayscale transition duration-300 hover:grayscale-0 hover:scale-105"
+        />
+      ))}
+    </div>
+  );
+}
+
+/** ------------------------------------------------------------------
+ *  App – primary page layout
+ *  ------------------------------------------------------------------*/
+export default function App() {
   const faqRef = useRef(null);
   const sponsorRef = useRef(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowEmoji(false);
-    }, 20000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const scrollToFAQ = () => {
-    faqRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToSponsor = () => {
-    sponsorRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  const scrollTo = (ref) => ref.current?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="flex flex-col items-center overflow-hidden font-merriweather text-white">
-      <div className="relative mx-10 my-20 flex max-w-[500px] items-center">
-        <div className="absolute left-[28%] top-[10%] z-[-1] w-[39%] bg-black">
-          <motion.img
-            animate={{ opacity: [1, 0.5, 0.2, 0.8, 0.8, 0.4, 0, 0, 0, 0, 0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1] }}
-            transition={{ duration: 1.5 }}
-            src={lanPary}
-            className="w-full"
-          />
+    <div className="relative mx-auto flex max-w-screen-xl flex-col items-center font-sans text-black leading-relaxed overflow-hidden">
+      {/* ----------------------------------------------------------------
+          HERO
+      ----------------------------------------------------------------*/}
+      {/* Header with full-width CSS stripes and DO. IT logo */}
+      <header className="absolute left-0 top-8 flex w-full items-center">
+        <div className="h-16 flex-grow mr-8 md:mr-16 bg-[repeating-linear-gradient(to_bottom,_#000_0_4px,_transparent_4px_8px)]" />
+        <img src={dontOverThinkIt} alt="DO. IT logo" className="w-32 md:w-48 mr-6 " />
+      </header>
+      <section className="relative flex w-full flex-col items-center pt-40 md:pt-48 pb-12">
+        <p className="mt-4 text-lg italic text-gray-700">(don't&nbsp;over&nbsp;think&nbsp;it)</p>
+        <h1 className="mt-8 max-w-2xl text-4xl font-black md:text-5xl lg:text-6xl">Hardware&nbsp;Hackathon</h1>
+        <p className="mt-6 text-sm md:text-base flex flex-wrap justify-center">
+          <span className="mr-1">June 20&nbsp;–&nbsp;22, 2025</span>
+          <span className="mx-1">·</span>
+          <span className="mr-1">Core Science Facility, Memorial&nbsp;University</span>
+          <span className="mx-1">·</span>
+          <span>St.&nbsp;John's, NL</span>
+        </p>
+
+        <div className="mt-16 flex flex-wrap justify-center gap-12">
+          <img src={spellbook} alt="Spellbook logo" className="h-8 filter grayscale" />
+          <img src={colab} alt="Co-Lab logo" className="h-10 filter grayscale" />
+          <img src={trophi} alt="Trophi logo" className="h-10 filter grayscale" />
+          <img src={technl} alt="TechNL logo" className="h-10 filter grayscale" />
         </div>
-        <motion.img
-          initial={{ x: -100, scale: 0.7, opacity: 0 }}
-          animate={{ x: 0, scale: 1, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.2 }}
-          src={dontOverThinkIt}
-          className="absolute left-[62%] top-[10%] w-1/2"
-        />
-        <motion.img
-          initial={{ scale: 0.8, opacity: 0, y: -100 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.2 }}
-          src={hackathonTxt}
-          className="absolute bottom-[-20%] w-full"
-        />
-        <img src={computer} />
-      </div>
-      <div className="flex items-center justify-center gap-4">
-        <img className="h-10" src={spellbook} />
-        <img className="h-6" src={trophi} />
-        <img className="h-6" src={keyin} />
-        <img className="h-6" src={colab} />
-      </div>
-      <div className="mx-2 my-8 text-center text-sm italic">
-        <div className="text-xs">
-          May 17th, 2024 - <b>Core Science Facility</b> @ Memorial University, St. John&apos;s, NL
-        </div>
-        <div>--</div>
-        Build a <b className="font-bold">solution</b> to your <b className="font-bold">problem</b> over a weekend of pizza fueled hacking.
-        <div className="mt-4 flex w-full justify-center gap-8 font-sedan text-lg">
-          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex items-center gap-2">
-            <Money weight="bold" /> free of charge
-          </motion.span>
-          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="flex items-center gap-2">
-            <Bird weight="bold" /> no prompt
-          </motion.span>
-          <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="flex items-center gap-2">
-            <ThumbsUp weight="bold" /> all vibes
-          </motion.span>
-        </div>
-      </div>
-      <div className="flex flex-wrap justify-center gap-2">
-        <a href="#" onClick={scrollToFAQ} className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-green-600 px-2 text-white">
-          <Info weight="bold" />
-          Information
-        </a>
-        <a href="mailto:mitch@spellbook.legal" className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-orange-500 px-2 text-white">
-          <Mailbox weight="bold" />
-          Contact
-        </a>
-        <a href="https://discord.gg/r8mSmykurU" className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-blue-800 px-2  text-white">
-          <DiscordLogo weight="bold" />
-          Discord
-        </a>
-        <a href="#" onClick={scrollToSponsor} className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-red-500 px-2 text-white">
-          <Heart weight="bold" />
-          Become a sponsor
-        </a>
-      </div>
-      <hr className="my-12 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
-      <div className="flex flex-col items-center gap-4 md:flex-row">
-        <div className="flex flex-col items-center">
-          <div className="relative mb-4" onMouseOver={() => setShowEmoji(false)}>
-            <AnimatePresence>
-              {showEmoji && (
-                <motion.div
-                  initial={{ x: -100, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2, exit: { duration: 0.2 } }}
-                  className="absolute -left-12 -top-8 text-4xl"
-                >
-                  <img src={point} className="w-12" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <a
-              href="https://share.hsforms.com/1Xt665hUURr6e9EFAq1H0hAqf935"
-              className="border-2 border-black border-l-white border-t-white bg-[#ffffcc] px-4 py-2 text-xl font-bold text-[#223a58]"
-            >
-              {showEmoji && <div className="absolute -right-1 -top-4 inline-block size-4 animate-ping rounded-lg bg-red-500"></div>}
-              REGISTER NOW
-            </a>
-          </div>
-          <div className="mb-4 italic">
-            <div className="font-bold">* registration required</div>
-            <div>* registration closes May 10th, 2024</div>
-          </div>
-        </div>
-        <div className="relative border-2 border-black border-b-white border-r-white bg-[#ffffcc] p-4 text-[#223a58]">
-          <div className="text-lg font-bold">Opening Ceremony - May 17th, 2024</div>
-          <div className="mb-2">The Breezeway @ Memorial University</div>
-          <table className="text-center text-lg">
-            <tr>
-              <td className="pr-4 text-left font-bold">Friday</td>
-              <td className="text-right">6:00pm - 11pm</td>
-            </tr>
-          </table>
-          <hr className="my-4 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
-          <div className="text-lg font-bold">Hacking begins - May 18th, 2024</div>
-          <div className="mb-2">Core Science Facility @ Memorial University</div>
-          <table className="text-center text-lg">
-            <tr>
-              <td className="pr-4 text-left font-bold">Saturday</td>
-              <td className="text-right">9:00am - 5pm</td>
-            </tr>
-            <tr>
-              <td className="pr-4 text-left font-bold">Sundary</td>
-              <td className="text-right">9:00am - 11pm</td>
-            </tr>
-          </table>
-          <img src={pizza} className="absolute bottom-[-10%] right-[-40%] scale-x-[-100%]" />
-        </div>
-      </div>
-      <hr className="my-12 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
-      <div ref={sponsorRef} className="relative">
-        <img src={question} className="w-12 absolute left-[-25%] bottom-0" />
-        <div className="mb-2 font-mono text-xl">:-)</div>
-        <div className="font-sedan text-4xl font-bold">F.A.Q. Wall</div>
-      </div>
-      <div className="mx-auto my-4 flex max-w-2xl flex-col px-8">
-        <div className="my-8 bg-[#050268] px-4 py-1 text-xl tracking-widest">&gt; What kind of Hackathon is DO. IT?</div>
-        <div>
-          DO. IT is a groundbreaking event brought to life by Sister and Brother duo Madison Emshey and Mitchell Hynes. It&apos;s not just an event; it&apos;s a movement towards
-          simplification, a rebellion against the over- complication of technology, and a call to arms for those who dare to build, tinker, and create.
-        </div>
-        <div>
-          <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">DO. IT is different</div>
-          DO. IT is a free-form hackathon, meaning there is no prompt. Participants are encouraged to build whatever they want, however they want, over the course of the weekend.
-          The event is free of charge and open to all skill levels, from beginners to seasoned developers. The only requirement is a desire to build something awesome.
-          <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">Practicality trumps complexity</div>
-          At DO. IT, we believe that the best solutions are often the simplest. We encourage participants to focus on practicality and usability, rather than complexity and to do
-          the bare minimum to get the job done. So don&apos;t overthink it - just DO. IT!
-        </div>
-        <div className="my-8 bg-[#050268] px-4 py-1 text-xl tracking-widest">&gt; How will prizes be judged?</div>
-        <a
-          href="/dontoverthinkit/JudgingCriteria.pdf"
-          className="flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-amber-600 mx-auto mb-4 px-2  text-white"
+
+        <p className="mt-16 max-w-2xl text-lg border-l-4 border-black pl-4">
+          Build a <strong>solution</strong> to your <strong>problem</strong> over a weekend of collaboration and hands-on creation. DO. IT is <strong>free of charge</strong>, has{" "}
+          <strong>no prompt</strong>, and is open to all disciplines &amp; experience levels.
+        </p>
+
+        <motion.a
+          href="https://share.hsforms.com/1xN45tod3Qx2JruCntnR4gwqf935"
+          whileHover={{ scale: 1.05 }}
+          className="mt-12 inline-block rounded-none border-2 border-black bg-yellow-300 px-8 py-4 text-xl font-bold uppercase tracking-wider hover:bg-yellow-400"
         >
-          <Trophy weight="bold" />
-          See our juding criteria
-        </a>
-        <div className="relative">
-          Prizes will be awarded based on the following categories:
-          <img src={trophy} className="absolute left-72 top-16 w-12" />
-          <ul className="my-4 ml-8 list-disc space-y-2 pl-5">
+          Register Now
+        </motion.a>
+
+        {/* Quick-nav CTA buttons */}
+        <div className="mt-16 flex flex-wrap justify-center gap-4 text-base">
+          <button onClick={() => scrollTo(faqRef)} className={`${navBtnBase} bg-green-100 hover:bg-green-500`}>
+            <Info weight="bold" size={18} /> Information
+          </button>
+          <a href="mailto:mitch@spellbook.legal" className={`${navBtnBase} bg-orange-100 hover:bg-orange-400`}>
+            <Mailbox weight="bold" size={18} /> Contact
+          </a>
+          <a href="https://discord.gg/r8mSmykurU" className={`${navBtnBase} bg-blue-100 hover:bg-blue-600 hover:text-white`}>
+            <DiscordLogo weight="bold" size={18} /> Discord
+          </a>
+          <button onClick={() => scrollTo(sponsorRef)} className={`${navBtnBase} bg-red-100 hover:bg-red-500 hover:text-white`}>
+            <Heart weight="bold" size={18} /> Sponsor
+          </button>
+        </div>
+        {/* (logos moved to top) */}
+        {/* Collage container */}
+        <div className="mt-20 w-full overflow-hidden">
+          <Collage />
+        </div>
+      </section>
+
+      <section className="mt-24 w-full max-w-2xl px-4 md:px-0">
+        <div className="relative mb-12 flex items-center justify-center">
+          <div className="absolute left-0 right-0 h-[2px] bg-[repeating-linear-gradient(to_right,_#000_0_4px,_transparent_4px_8px)]"></div>
+          <div className="absolute w-20 h-20 rounded-full border-2 border-black bg-white flex items-center justify-center z-10">
+            <span className="font-black text-lg tracking-widest">DO IT</span>
+          </div>
+        </div>
+
+        <h2 className="mb-8 text-3xl font-bold text-center">Event Schedule</h2>
+
+        <div className="border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white">
+          <div className="border-b border-black p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold tracking-tight">Day 1: Opening Ceremony</h3>
+              <span className="text-xs border border-black px-2 py-1 bg-white font-mono">June 20th</span>
+            </div>
+            <p className="mb-6 text-sm text-gray-700">The Breezeway, Memorial University</p>
+            <div className="border-t border-gray-300 pt-4">
+              <div className="flex justify-between font-mono py-2 border-b border-dashed border-gray-200 hover:bg-gray-50">
+                <span className="font-medium">Check-in & Networking</span>
+                <span className="text-right tabular-nums">6:00 pm — 7:00 pm</span>
+              </div>
+              <div className="flex justify-between font-mono py-2 border-b border-dashed border-gray-200 hover:bg-gray-50">
+                <span className="font-medium">Opening Remarks</span>
+                <span className="text-right tabular-nums">7:00 pm — 7:30 pm</span>
+              </div>
+              <div className="flex justify-between font-mono py-2 hover:bg-gray-50">
+                <span className="font-medium">Team Formation</span>
+                <span className="text-right tabular-nums">7:30 pm — 11:00 pm</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold tracking-tight">Days 2-3: Hacking Weekend</h3>
+              <span className="text-xs border border-black px-2 py-1 bg-white font-mono">June 21–22</span>
+            </div>
+            <p className="mb-6 text-sm text-gray-700">Core Science Facility, Memorial University</p>
+
+            <div className="border-t border-gray-300 pt-4">
+              <div className="flex mb-6">
+                <div className="w-14 font-bold text-sm uppercase tracking-wider pt-2">Sat</div>
+                <div className="flex-1 border-l border-gray-200 pl-4 space-y-0">
+                  <div className="flex justify-between font-mono py-2 border-b border-dashed border-gray-200 hover:bg-gray-50">
+                    <span className="font-medium">Doors Open</span>
+                    <span className="text-right tabular-nums">9:00 am</span>
+                  </div>
+                  <div className="flex justify-between font-mono py-2 hover:bg-gray-50">
+                    <span className="font-medium">Hacking Session</span>
+                    <span className="text-right tabular-nums">9:30 am — 5:00 pm</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex pt-2 border-t border-gray-200">
+                <div className="w-14 font-bold text-sm uppercase tracking-wider pt-2">Sun</div>
+                <div className="flex-1 border-l border-gray-200 pl-4 space-y-0">
+                  <div className="flex justify-between font-mono py-2 border-b border-dashed border-gray-200 hover:bg-gray-50">
+                    <span className="font-medium">Doors Open</span>
+                    <span className="text-right tabular-nums">9:00 am</span>
+                  </div>
+                  <div className="flex justify-between font-mono py-2 border-b border-dashed border-gray-200 hover:bg-gray-50">
+                    <span className="font-medium">Hacking Deadline</span>
+                    <span className="text-right tabular-nums">5:00 pm</span>
+                  </div>
+                  <div className="flex justify-between font-mono py-2 hover:bg-gray-50">
+                    <span className="font-medium">Project Demos & Awards</span>
+                    <span className="text-right tabular-nums">6:00 pm — 11:00 pm</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------
+          F.A.Q. SECTION
+      ----------------------------------------------------------------*/}
+      <section ref={faqRef} className="mt-24 w-full max-w-2xl px-4 md:px-0">
+        <div className="relative mb-12 flex items-center justify-center">
+          <div className="absolute left-0 right-0 h-[2px] bg-[repeating-linear-gradient(to_right,_#000_0_4px,_transparent_4px_8px)]"></div>
+          <div className="absolute w-20 h-20 rounded-full border-2 border-black bg-white flex items-center justify-center z-10">
+            <Info weight="bold" size={32} className="text-green-500" />
+          </div>
+        </div>
+        <h2 className="text-center text-sm font-mono uppercase tracking-wider text-green-500 mb-8">Got questions?</h2>
+        <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-black">F.A.Q. Wall</h2>
+
+        {/* Each FAQ item */}
+        <article className="mb-8 rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">What kind of Hackathon is DO. IT?</h3>
+          <p className="mb-4 text-sm text-gray-700">
+            DO. IT is a groundbreaking event brought to life by sister-and-brother duo Madison Emshey and Mitchell Hynes. It's not just an event; it's a movement towards
+            simplification, a rebellion against the over-complication of technology, and a call to arms for those who dare to build, tinker, and create.
+          </p>
+          <p className="mb-4 text-sm text-gray-700">
+            <span className="block font-medium italic text-gray-800">DO.&nbsp;IT is different</span>
+            It's a free-form hackathon with no preset prompt. Participants are encouraged to build whatever they want, however they want, over the course of the weekend.
+          </p>
+          <p className="text-sm text-gray-700">
+            <span className="block font-medium italic text-gray-800">Practicality trumps complexity</span>
+            At DO.&nbsp;IT, we believe the best solutions are often the simplest. Don't overthink it — just DO.&nbsp;IT!
+          </p>
+        </article>
+
+        {/**TBD -- This is stale from last year. */}
+        {/* <article className="mb-8 rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">How will prizes be judged?</h3>
+          <p className="mb-4 text-sm text-gray-700">Prizes will be awarded in the following categories:</p>
+          <ul className="mb-4 ml-5 list-disc space-y-1 text-sm text-gray-700">
             <li>Best Overall</li>
             <li>Best Design</li>
             <li>Best Use of Technology</li>
             <li>Best Use of Data</li>
           </ul>
-          Winners will be selected by a panel of judges, with the Best Overall prize being awarded to the team that demonstrates the most creativity, innovation, and technical
-          skill.
-          <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">Demos vs. Pitches</div>
-          <div>
-            At DO. IT, we believe that the best way to showcase your project is through a live demo. Pitches are great, but we want to see your project in action. So get ready to
-            show off your hard work and impress the judges with a live demo of your project!
-          </div>
-        </div>
-        <div className="relative">
-          <div className="my-8 bg-[#050268] px-4 py-1 text-xl tracking-widest">&gt; What if I can&apos;t code?</div>
-          <div className="mr-12 flex gap-2">
-            Well, you&apos;re in luck! DO. IT is not just for coders - it&apos;s for anyone who loves to build, create, and innovate. If you can&apos;t code, that&apos;s okay - you
-            can:
-            <img src={computaSmash} className="absolute right-[-10%] size-24" />
-          </div>
-          <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">Bring a problem instead</div>
-          <div>
-            DO. IT is open to everyone, regardless of skill level. If you can&apos;t code, that&apos;s okay - bring a problem instead. You can still participate in the event by
-            sharing your problem with the other participants and helping them come up with a solution. Who knows - you might just inspire the next big idea!
-          </div>
-          <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">Participate in CLC - Canada Learning Code</div>
-          On Saturday morning, CLC will be hosting a workshop for beginners to learn the basics of coding. If you&apos;ve never coded before, this is a great opportunity to get
-          started and learn some new skills. Our mentors will be on hand to help you out and answer any questions you may have.
-        </div>
-        <div className="my-8 bg-[#050268] px-4 py-1 text-xl tracking-widest">&gt; What if I don&apos;t have a team?</div>
-        <div>
-          No problem! We&apos;ll have a team formation session at the beginning of the event, where you can meet other participants and form a team. You can also join our Discord
-          server before the event to start networking and find potential teammates.
-        </div>
-        <div className="flex w-full flex-col items-center">
-          <img src={hug} className="mt-8 w-32" />
-          <a href="https://discord.gg/r8mSmykurU" className="my-8 flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-blue-800 px-2 text-lg text-white">
-            <DiscordLogo weight="bold" />
-            Join us on Discord
+          <p className="mb-4 text-sm text-gray-700">
+            Winners will be selected by a panel of judges, with the Best Overall prize awarded to the team that demonstrates the most creativity, innovation, and technical skill.
+          </p>
+          <p className="mb-4 text-sm text-gray-700">
+            <span className="block font-medium italic text-gray-800">Demos vs. Pitches</span>
+            We believe the best way to showcase your project is through a live demo. Get ready to show off your hard work!
+          </p>
+          <a
+            href="/dontoverthinkit/JudgingCriteria.pdf"
+            className="inline-flex items-center gap-2 rounded-none border-2 border-black bg-green-100 px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-green-500 hover:text-black"
+          >
+            <Trophy weight="bold" size={18} /> See our judging criteria
           </a>
+        </article> */}
+
+        <article className="mb-8 rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">What if I can't code?</h3>
+          <p className="mb-4 text-sm text-gray-700">DO. IT is for anyone who loves to build, create, and innovate. If you're not a coder, bring a problem instead!</p>
+          <p className="text-sm text-gray-700">
+            <span className="block font-medium text-gray-800">Participate in CLC – Canada Learning Code</span>
+            Saturday morning, CLC will host a workshop for beginners to learn the basics of coding.
+          </p>
+        </article>
+
+        <article className="rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">What if I don't have a team?</h3>
+          <p className="mb-4 text-sm text-gray-700">We'll have a team-formation session at the beginning of the event. Join our Discord beforehand to meet potential teammates.</p>
+          <a
+            href="https://discord.gg/r8mSmykurU"
+            className="inline-flex items-center gap-2 rounded-none border-2 border-black bg-blue-100 px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-blue-600 hover:text-white"
+          >
+            <DiscordLogo weight="bold" size={18} /> Join us on Discord
+          </a>
+        </article>
+      </section>
+
+      {/* ----------------------------------------------------------------
+          SPONSOR SECTION
+      ----------------------------------------------------------------*/}
+      <section ref={sponsorRef} className="mt-24 w-full max-w-2xl px-4 md:px-0 pb-24">
+        <div className="relative mb-12 flex items-center justify-center">
+          <div className="absolute left-0 right-0 h-[2px] bg-[repeating-linear-gradient(to_right,_#000_0_4px,_transparent_4px_8px)]"></div>
+          <div className="absolute w-20 h-20 rounded-full border-2 border-black bg-white flex items-center justify-center z-10">
+            <Heart weight="bold" size={32} className="text-red-500" />
+          </div>
         </div>
-      </div>
-      <hr className="my-12 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
-      <div ref={sponsorRef} className="relative">
-        <img src={love} className="w-12 absolute left-[-25%] bottom-0" />
-        <div className="mb-2 font-mono text-xl">&lt;3</div>
-        <div className="font-sedan text-4xl font-bold">Sponsor DO. IT</div>
-      </div>
-      <div className="mx-auto my-4 flex max-w-2xl flex-col px-8">
-        <div className="my-8 bg-[#050268] px-4 py-1 text-xl tracking-widest">&gt; Why should you DO. IT?</div>
-        <div>
-          Joining DO. IT as a sponsor means more than just logo placement. It's about becoming part of a movement that values action over words. Your support empowers a diverse
-          group of problem-solvers, ready to dive into the tech scene with fresh ideas.
-        </div>
-        <div>
-          <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">Your Benefits Include</div>
-          <ul className="list-disc space-y-2 pl-5">
+        <h2 className="text-center text-sm font-mono uppercase tracking-wider text-red-600 mb-4">Become a Partner</h2>
+        <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-black">Sponsor DO. IT</h2>
+        <div className="rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <p className="mb-6 text-sm text-gray-700">
+            Joining DO. IT as a sponsor means more than just logo placement. Your support empowers a diverse group of problem-solvers, ready to dive into the tech scene with fresh
+            ideas.
+          </p>
+          <p className="mb-4 text-sm text-gray-700">
+            <span className="block text-lg font-semibold text-gray-900">Your Benefits Include:</span>
+          </p>
+          <ul className="mb-8 ml-5 list-disc space-y-2 text-sm text-gray-700">
             <li>
-              <b>Enriching the Talent Pipeline:</b> Connect with passionate individuals across various disciplines, ready to bring new perspectives to your team.
+              <strong>Enriching the Talent Pipeline:</strong> Connect with passionate individuals across various disciplines.
             </li>
             <li>
-              <b>Engage the Community:</b> Show your commitment to fostering innovation and support the growth of Newfoundland and Labrador&apos;s tech ecosystem.
+              <strong>Engage the Community:</strong> Show your commitment to fostering innovation in NL's tech ecosystem.
             </li>
             <li>
-              <b>Much, much more:</b> Download our Sponsor package to learn more about the benefits of sponsoring DO. IT and how you can get involved.
+              <strong>Much, much more:</strong> Download our sponsor package for full details.
             </li>
           </ul>
-        </div>
-        <div className="my-4 bg-gradient-to-r from-[#ffffcc] to-transparent px-2  font-sedan text-black">Download here:</div>
-        <div className="flex w-full flex-col items-center">
-          <a
+          <motion.a
             href="/dontoverthinkit/JoinTheRebellion.pdf"
-            className="my-8 flex items-center gap-2 border-2 border-black border-l-white border-t-white bg-red-700 px-2 text-lg text-white"
+            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-2 rounded-none border-2 border-black bg-red-100 px-6 py-3 font-bold tracking-wider text-black transition-colors hover:bg-red-500 hover:text-white"
           >
-            <Heart weight="bold" />
-            Download our Sponsor package
-          </a>
+            <Heart weight="bold" size={20} /> Download Sponsor Package
+          </motion.a>
         </div>
-        <hr className="my-12 h-0.5 w-full max-w-2xl border border-b-gray-400 border-t-black" />
-        <img src={pizzaCut} className="w-1/2 mx-auto" />
-        <div className="flex gap-2 mt-32">
-          <img src={underConstruction} className="h-12" />
-          <img src={canada} className="h-12" />
-        </div>
-      </div>
+      </section>
     </div>
   );
 }
-
-export default App;
