@@ -248,11 +248,13 @@ export default function App() {
         </article> */}
 
         <article className="mb-8 rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-          <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">What if I can't code?</h3>
-          <p className="mb-4 text-sm text-gray-700">DO. IT is for anyone who loves to build, create, and innovate. If you're not a coder, bring a problem instead!</p>
+          <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">What if I don't have hardware experience?</h3>
+          <p className="mb-4 text-sm text-gray-700">
+            DO. IT is a hardware hackathon in collaboration with the MUN Student Design Hub. No previous hardware experience is needed to participate!
+          </p>
           <p className="text-sm text-gray-700">
-            <span className="block font-medium text-gray-800">Participate in CLC – Canada Learning Code</span>
-            Saturday morning, CLC will host a workshop for beginners to learn the basics of coding.
+            <span className="block font-medium text-gray-800">Mentors will guide you</span>
+            Our experienced mentors will be available throughout the event to help you learn, build, and bring your hardware ideas to life.
           </p>
         </article>
 
