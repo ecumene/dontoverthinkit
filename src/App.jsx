@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { Bird, DiscordLogo, Heart, Info, Mailbox, Money, ThumbsUp, Trophy } from "@phosphor-icons/react";
+import { DiscordLogo, Heart, Info, Mailbox } from "@phosphor-icons/react";
 
 // Assets – logos & static imagery only (no GIFs)
 import dontOverThinkIt from "./assets/dontOverThinkItTxt.png";
@@ -8,6 +8,9 @@ import spellbook from "./assets/spellbook.svg";
 import trophi from "./assets/trophi.png";
 import technl from "./assets/technl.png";
 import colab from "./assets/colab.png";
+import hfnl from "./assets/hfnl.png";
+import sdh from "./assets/sdh.png";
+import raspi from "./assets/raspi.png";
 
 // Collage photos – static PNGs pulled from sponsorship package
 import collage1 from "./assets/collage/collage1.png";
@@ -68,16 +71,20 @@ export default function App() {
         <p className="mt-6 text-sm md:text-base flex flex-wrap justify-center">
           <span className="mr-1">June 20&nbsp;–&nbsp;22, 2025</span>
           <span className="mx-1">·</span>
-          <span className="mr-1">Core Science Facility, Memorial&nbsp;University</span>
+          <span className="mr-1">
+            Core Science Facility <strong>Whale Atrium (entrance)</strong>, Memorial&nbsp;University
+          </span>
           <span className="mx-1">·</span>
           <span>St.&nbsp;John's, NL</span>
         </p>
 
-        <div className="mt-16 flex flex-wrap justify-center gap-12">
+        <div className="mt-16 flex flex-wrap justify-center items-center gap-12">
           <img src={spellbook} alt="Spellbook logo" className="h-8 filter grayscale" />
           <img src={colab} alt="Co-Lab logo" className="h-10 filter grayscale" />
           <img src={trophi} alt="Trophi logo" className="h-10 filter grayscale" />
           <img src={technl} alt="TechNL logo" className="h-10 filter grayscale" />
+          <img src={sdh} alt="SDH logo" className="h-32 filter grayscale" />
+          <img src={hfnl} alt="HFNL logo" className="h-20 filter grayscale" />
         </div>
 
         <p className="mt-16 max-w-2xl text-lg border-l-4 border-black pl-4">
@@ -153,7 +160,9 @@ export default function App() {
               <h3 className="text-xl font-bold tracking-tight">Days 2-3: Hacking Weekend</h3>
               <span className="text-xs border border-black px-2 py-1 bg-white font-mono">June 21–22</span>
             </div>
-            <p className="mb-6 text-sm text-gray-700">Core Science Facility, Memorial University</p>
+            <p className="mb-6 text-sm text-gray-700">
+              Core Science Facility <strong>Whale Atrium (entrance)</strong>, Memorial&nbsp;University
+            </p>
 
             <div className="border-t border-gray-300 pt-4">
               <div className="flex mb-6">
@@ -209,8 +218,9 @@ export default function App() {
         <article className="mb-8 rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
           <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">What kind of Hackathon is DO. IT?</h3>
           <p className="mb-4 text-sm text-gray-700">
-            DO. IT is a groundbreaking event brought to life by sister-and-brother duo Madison Emshey and Mitchell Hynes. It's not just an event; it's a movement towards
-            simplification, a rebellion against the over-complication of technology, and a call to arms for those who dare to build, tinker, and create.
+            DO. IT is a groundbreaking event brought to life by <strong>Madison Emshey</strong> and <strong>Mitchell Hynes</strong> — a sister-and-brother duo — together with
+            organizer & hype-man <strong>William Church</strong> of Hackfrost&nbsp;NL. It's not just an event; it's a movement towards simplification, a rebellion against the
+            over-complication of technology, and a call to arms for those who dare to build, tinker, and create.
           </p>
           <p className="mb-4 text-sm text-gray-700">
             <span className="block font-medium italic text-gray-800">DO.&nbsp;IT is different</span>
@@ -251,6 +261,24 @@ export default function App() {
           <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">What if I don't have hardware experience?</h3>
           <p className="mb-4 text-sm text-gray-700">
             DO. IT is a hardware hackathon in collaboration with the MUN Student Design Hub. No previous hardware experience is needed to participate!
+          </p>
+          <p className="text-sm text-gray-700">
+            <span className="block font-medium text-gray-800">Batteries included</span>
+            While we're collaborating with the Student Design Hub at Memorial University, which provides access to a makerspace and 3D printers, you don't need to bring any
+            hardware. <strong>We'll provide Raspberry Pi kits to all teams</strong>, including:
+            <div className="flex flex-col-reverse sm:flex-row justify-between gap-8 items-center">
+              <ul className="mt-2 ml-5 list-disc space-y-1 text-sm text-gray-700 mb-4">
+                <li>Power supplies & HDMI cables</li>
+                <li>Breadboards & resistor packs</li>
+                <li>Motors (geared, servo, and DC)</li>
+                <li>Sensor kits & motor drivers</li>
+                <li>6DOF sensors</li>
+                <li>Soil humidity sensors with pumps</li>
+              </ul>
+              <div>
+                <img src={raspi} alt="Raspberry Pi kit" className="h-full w-auto mx-auto mt-4 ml-4 max-w-[250px] mx-auto" />
+              </div>
+            </div>
           </p>
           <p className="text-sm text-gray-700">
             <span className="block font-medium text-gray-800">Mentors will guide you</span>
@@ -304,12 +332,29 @@ export default function App() {
           <motion.a
             href="/dontoverthinkit/JoinTheRebellion.pdf"
             whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 rounded-none border-2 border-black bg-red-100 px-6 py-3 font-bold tracking-wider text-black transition-colors hover:bg-red-500 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-none border-2 border-black bg-red-100 px-6 py-3 font-bold tracking-wider text-black transition-colors hover:bg-red-500 hover:text-white text-xs"
           >
             <Heart weight="bold" size={20} /> Download Sponsor Package
           </motion.a>
         </div>
       </section>
+
+      {/* ----------------------------------------------------------------
+          FOOTER
+      ----------------------------------------------------------------*/}
+      <footer className="w-full bg-black text-white text-xs md:text-sm py-8 px-4 text-center">
+        <a href="https://mitchellhynes.com" className="mb-2 underline hover:text-gray-300">
+          Made by Mitchell Hynes.
+        </a>
+        <p className="mb-2">
+          The contents of this blog are MIT Licensed unless another License is specified for an artefact, and the code is available on{" "}
+          <a href="https://github.com/ecumene/dontoverthinkit" className="underline hover:text-gray-300">
+            GitHub
+          </a>
+          .
+        </p>
+        <p>You have my consent to train a machine learning model on this data.</p>
+      </footer>
     </div>
   );
 }
