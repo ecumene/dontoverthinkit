@@ -188,11 +188,11 @@ export default function App() {
                   </div>
                   <div className="flex justify-between font-mono py-2 border-b border-dashed border-gray-200 hover:bg-gray-50">
                     <span className="font-medium">Hacking Deadline</span>
-                    <span className="text-right tabular-nums">5:00 pm</span>
+                    <span className="text-right tabular-nums">2:00 pm</span>
                   </div>
                   <div className="flex justify-between font-mono py-2 hover:bg-gray-50">
                     <span className="font-medium">Project Demos & Awards</span>
-                    <span className="text-right tabular-nums">6:00 pm — 11:00 pm</span>
+                    <span className="text-right tabular-nums">3:00 pm — 6:00 pm</span>
                   </div>
                 </div>
               </div>
