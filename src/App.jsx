@@ -4,7 +4,6 @@ import { DiscordLogo, Heart, Info, Mailbox, ShoppingCart } from "@phosphor-icons
 import { Link } from "react-router-dom";
 
 // Assets – logos & static imagery only (no GIFs)
-import dontOverThinkIt from "./assets/dontOverThinkItTxt.png";
 import spellbook from "./assets/spellbook.svg";
 import trophi from "./assets/trophi.png";
 import technl from "./assets/technl.png";
@@ -253,7 +252,7 @@ export default function App() {
             href="/dontoverthinkit/JudgingCriteria.pdf"
             className="inline-flex items-center gap-2 rounded-none border-2 border-black bg-green-100 px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-green-500 hover:text-black"
           >
-            <Trophy weight="bold" size={18} /> See our judging criteria
+            See our judging criteria
           </a>
         </article>
 
