@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { DiscordLogo, Heart, Info, Mailbox } from "@phosphor-icons/react";
+import { DiscordLogo, Heart, Info, Mailbox, ShoppingCart } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 // Assets – logos & static imagery only (no GIFs)
 import dontOverThinkIt from "./assets/dontOverThinkItTxt.png";
@@ -56,15 +57,11 @@ export default function App() {
   const scrollTo = (ref) => ref.current?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="relative mx-auto flex max-w-screen-xl flex-col items-center font-sans text-black leading-relaxed overflow-hidden">
+    <>
       {/* ----------------------------------------------------------------
           HERO
       ----------------------------------------------------------------*/}
       {/* Header with full-width CSS stripes and DO. IT logo */}
-      <header className="absolute left-0 top-8 flex w-full items-center">
-        <div className="h-16 flex-grow mr-8 md:mr-16 bg-[repeating-linear-gradient(to_bottom,_#000_0_4px,_transparent_4px_8px)]" />
-        <img src={dontOverThinkIt} alt="DO. IT logo" className="w-32 md:w-48 mr-6 " />
-      </header>
       <section className="relative flex w-full flex-col items-center pt-40 md:pt-48 pb-12">
         <p className="mt-4 text-lg italic text-gray-700">(don't&nbsp;over&nbsp;think&nbsp;it)</p>
         <h1 className="mt-8 max-w-2xl text-4xl font-black md:text-5xl lg:text-6xl">Hardware&nbsp;Hackathon</h1>
@@ -105,6 +102,9 @@ export default function App() {
           <button onClick={() => scrollTo(faqRef)} className={`${navBtnBase} bg-green-100 hover:bg-green-500`}>
             <Info weight="bold" size={18} /> Information
           </button>
+          <Link to="/depot" className={`${navBtnBase} bg-yellow-100 hover:bg-yellow-400`}>
+            <ShoppingCart weight="bold" size={18} /> Depot
+          </Link>
           <a href="mailto:mitch@spellbook.legal" className={`${navBtnBase} bg-orange-100 hover:bg-orange-400`}>
             <Mailbox weight="bold" size={18} /> Contact
           </a>
@@ -338,23 +338,6 @@ export default function App() {
           </motion.a>
         </div>
       </section>
-
-      {/* ----------------------------------------------------------------
-          FOOTER
-      ----------------------------------------------------------------*/}
-      <footer className="w-full bg-black text-white text-xs md:text-sm py-8 px-4 text-center">
-        <a href="https://mitchellhynes.com" className="mb-2 underline hover:text-gray-300">
-          Made by Mitchell Hynes.
-        </a>
-        <p className="mb-2">
-          The contents of this blog are MIT Licensed unless another License is specified for an artefact, and the code is available on{" "}
-          <a href="https://github.com/ecumene/dontoverthinkit" className="underline hover:text-gray-300">
-            GitHub
-          </a>
-          .
-        </p>
-        <p>You have my consent to train a machine learning model on this data.</p>
-      </footer>
-    </div>
+    </>
   );
 }
