@@ -232,18 +232,18 @@ export default function App() {
           </p>
         </article>
 
-        {/**TBD -- This is stale from last year. */}
-        {/* <article className="mb-8 rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+        <article className="mb-8 rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
           <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">How will prizes be judged?</h3>
           <p className="mb-4 text-sm text-gray-700">Prizes will be awarded in the following categories:</p>
           <ul className="mb-4 ml-5 list-disc space-y-1 text-sm text-gray-700">
-            <li>Best Overall</li>
-            <li>Best Design</li>
-            <li>Best Use of Technology</li>
-            <li>Best Use of Data</li>
+            <li>Hardware Breakthrough</li>
+            <li>Rapid Prototyping Excellence</li>
+            <li>Sustainability & Social Impact</li>
+            <li>People’s Choice</li>
           </ul>
           <p className="mb-4 text-sm text-gray-700">
-            Winners will be selected by a panel of judges, with the Best Overall prize awarded to the team that demonstrates the most creativity, innovation, and technical skill.
+            Winners will be selected by a panel of judges, with the Hardware Breakthrough prize awarded to the team that demonstrates the most creativity, innovation, and technical
+            skill.
           </p>
           <p className="mb-4 text-sm text-gray-700">
             <span className="block font-medium italic text-gray-800">Demos vs. Pitches</span>
@@ -255,7 +255,7 @@ export default function App() {
           >
             <Trophy weight="bold" size={18} /> See our judging criteria
           </a>
-        </article> */}
+        </article>
 
         <article className="mb-8 rounded-none border-2 border-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
           <h3 className="mb-4 text-xl font-semibold tracking-tight text-gray-900">What if I don't have hardware experience?</h3>
